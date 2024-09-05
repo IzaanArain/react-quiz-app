@@ -1,0 +1,83 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.hero-container {
+width: 100vw;
+height: 100vh;
+background-image: url("./assets/Expertizo-logo.png");
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+border-bottom: 5px solid gray;
+/* background-attachment: fixed; */
+}
+
+.quiz-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.question-container{
+  width: 50%;
+  padding: 2rem;
+  border: 3px solid gray;
+}
+
+.choice-list {
+  display:  grid;
+  grid-template-columns: auto auto;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.choice-box {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px;
+
+}
+
+.choice-box:hover {
+  color: white;
+  background-color: black;
+}
+
+.current-progress {
+  padding: 10px;
+  background-color: #717171;
+}
+.score-card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.progress-bar-container{
+  margin: 10rem 3rem 0 3rem;
+}
+
+/* .bar-container{
+  border: 2px solid black;
+  border-radius: 5px;
+} */
+
+.progress {
+  border-radius: 5px;
+}
+
+.currently-answered-progress {
+  background-color: black;
+  padding: 10px;
+}
+.minimum-progress{
+  padding: 10px;
+  background-color: #717171;
+}
+
+.maximum-progress{
+  background-color: #D2D2D2;
+  padding: 10px;
+}
