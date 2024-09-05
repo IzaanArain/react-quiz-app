@@ -59,25 +59,25 @@ border-bottom: 5px solid gray;
   margin: 10rem 3rem 0 3rem;
 }
 
-/* .bar-container{
+.bar-container{
   border: 2px solid black;
   border-radius: 5px;
-} */
+  display:  flex;
+  width: 100%;
+}
 
 .progress {
   border-radius: 5px;
+  padding: 10px;
 }
 
 .currently-answered-progress {
   background-color: black;
-  padding: 10px;
 }
 .minimum-progress{
-  padding: 10px;
   background-color: #717171;
 }
 
 .maximum-progress{
   background-color: #D2D2D2;
-  padding: 10px;
 }
