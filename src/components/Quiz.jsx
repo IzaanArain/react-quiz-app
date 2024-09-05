@@ -100,7 +100,7 @@ const Quiz = () => {
         {status && (
           <div className="status-message">
             <h2>{status}</h2>
-            <button onClick={handleNextQuestion} className="status-btn">
+            <button onClick={handleNextQuestion} className="next-btn">
               Next Question
             </button>
           </div>

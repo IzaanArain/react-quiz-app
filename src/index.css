@@ -4,18 +4,16 @@
   box-sizing: border-box;
 }
 .hero-container {
-width: 100vw;
 height: 100vh;
 background-image: url("./assets/Expertizo-logo.png");
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-border-bottom: 5px solid gray;
+border-bottom: 5px solid #717171;
 /* background-attachment: fixed; */
 }
 
 .quiz-container{
-  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -48,19 +46,24 @@ border-bottom: 5px solid gray;
   /* column-gap: 10px; */
   display: flex;
   flex-wrap: wrap; 
-  gap: 10px;     
+  gap: 20px;     
 }
 
 .choice-box {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.choice-btn {
   border: 1px solid black;
   border-radius: 5px;
   padding: 2px;
   font-size: 1rem;
   width: 50%;
-  flex: 1 1 calc(20% - 20px);
 }
 
-.choice-box:hover {
+.choice-btn:hover {
   color: white;
   background-color: black;
 }
@@ -71,13 +74,19 @@ border-bottom: 5px solid gray;
   align-items: center;
 }
 
-.status-btn {
+.next-btn {
   border: 1px solid black;
   border-radius: 5px;
   padding: 10px 5px;
   font-size: 1rem;
   width: 20%;
 }
+
+.next-btn:hover {
+  color: white;
+  background-color: black;
+}
+
 .current-progress {
   padding: 10px;
   background-color: #717171;

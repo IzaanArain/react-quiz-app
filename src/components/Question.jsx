@@ -33,13 +33,16 @@ const Question = (props) => {
         {
           choices.map((choice, i) => {
             return (
-              <button key={i}
+              <div className='choice-box'>
+                <button key={i}
                 onClick={() => {
                   handleAnswer(decodeURIComponent(choice))
                 }}
-                className='choice-box'>
+                className='choice-btn'
+                >
                 {decodeURIComponent(choice)}
               </button>
+              </div>
             )
           })
         }
