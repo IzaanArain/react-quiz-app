@@ -26,9 +26,9 @@ const Question = (props) => {
   return (
     <div className='question-box'>
       <h1>{`Question ${index + 1} of ${total}`}</h1>
-      <h5>{decodeURIComponent(category)}</h5>
+      <p className='category-text'>{decodeURIComponent(category)}</p>
       <Rating difficulty={difficulty} />
-      <p>{decodeURIComponent(question)}</p>
+      <p className='question-text'>{decodeURIComponent(question)}</p>
       <div className='choice-list'>
         {
           choices.map((choice, i) => {

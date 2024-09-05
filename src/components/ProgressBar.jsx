@@ -19,7 +19,7 @@ const ProgressBar = ({ score, incorrectAnswers, currentlyAnswered }) => {
         </div>
         <div
           className="progress minimum-progress"
-          style={{ width: `60%` }}
+          style={{ width: `50%` }}
         >
         </div>
         <div
