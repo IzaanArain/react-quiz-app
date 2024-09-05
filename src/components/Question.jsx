@@ -11,8 +11,8 @@ const Question = (props) => {
     question,
     correct_answer,
     incorrect_answers = [],
-    handleNextQuestion,
-    handleAnswer
+    status ,
+    handleAnswer,
   } = props;
   const [choices, setChoices] = useState([]);
 
@@ -24,7 +24,7 @@ const Question = (props) => {
   }, [correct_answer, incorrect_answers]);
 
   return (
-    <div>
+    <div className='question-box'>
       <h1>{`Question ${index + 1} of ${total}`}</h1>
       <h5>{decodeURIComponent(category)}</h5>
       <Rating difficulty={difficulty} />
@@ -36,7 +36,6 @@ const Question = (props) => {
               <button key={i}
                 onClick={() => {
                   handleAnswer(decodeURIComponent(choice))
-                  handleNextQuestion()
                 }}
                 className='choice-box'>
                 {decodeURIComponent(choice)}

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import Question from './Question'
-import data from '../../questions.json';
-import ProgressBar from './ProgressBar';
+import React, { useEffect, useState } from "react";
+import Question from "./Question";
+import data from "../../questions.json";
+import ProgressBar from "./ProgressBar";
 
 const Quiz = () => {
   const [questions, setQuestion] = useState([]);
@@ -11,6 +11,7 @@ const Quiz = () => {
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const [currentlyAnswered, setCurrentlyAnswered] = useState(0);
   const [currentProgress, setCurrentProgress] = useState(0);
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -22,66 +23,88 @@ const Quiz = () => {
         //   }
         // });
         // const data = await res.json();
-        setQuestion(data)
+        setQuestion(data);
       } catch (err) {
-        console.error("error", err.message)
+        console.error("error", err.message);
       }
     })();
   }, []);
 
   useEffect(() => {
-    setCurrentQuestion(questions[currentQuestionIndex])
+    setCurrentQuestion(questions[currentQuestionIndex]);
   }, [questions, currentQuestionIndex]);
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setStatus(null);
     }
-  }
+  };
 
   const handleAnswer = (selectedOption) => {
     const correctAnswer = decodeURIComponent(currentQuestion.correct_answer);
-    if (selectedOption === correctAnswer) {
-      setScore(prev => prev + 1);
-    } else {
-      setIncorrectAnswers((prev) => prev + 1)
+    if (status === null) {
+      if (selectedOption === correctAnswer) {
+        setScore((prev) => prev + 1);
+        setStatus("Correct!");
+      } else {
+        setIncorrectAnswers((prev) => prev + 1);
+        setStatus("Sorry!");
+      }
     }
   };
 
   const calculateProgress = () => {
     if (currentQuestionIndex <= questions.length) {
-      const currentProgressQuestion = Math.round(((currentQuestionIndex + 1) / questions.length) * 100);
+      const currentProgressQuestion = Math.round(
+        ((currentQuestionIndex + 1) / questions.length) * 100
+      );
       setCurrentProgress(currentProgressQuestion);
-      const currentlyAnsweredQuestions = Math.round((score / (currentQuestionIndex + 1)) * 100)
+      const currentlyAnsweredQuestions = Math.round(
+        (score / (currentQuestionIndex + 1)) * 100
+      );
       setCurrentlyAnswered(currentlyAnsweredQuestions);
     }
   };
 
   useEffect(() => {
-    calculateProgress()
-  }, [score, incorrectAnswers])
+    calculateProgress();
+  }, [score, incorrectAnswers]);
 
   // console.log("score", score);
   // console.log("incorrectAnswers", incorrectAnswers);
   // console.log("currentlyAnsweredQuestions", currentlyAnswered);
 
-
   return (
     <div className="quiz-container">
-      <div className='question-container'>
-        <div style={{ width: `${currentProgress}%` }} className='current-progress'></div>
-        {currentQuestion && <Question
-          total={questions.length}
-          index={currentQuestionIndex}
-          category={currentQuestion?.category}
-          type={currentQuestion?.type}
-          difficulty={currentQuestion?.difficulty}
-          question={currentQuestion?.question}
-          correct_answer={currentQuestion?.correct_answer}
-          incorrect_answers={currentQuestion?.incorrect_answers}
-          handleNextQuestion={handleNextQuestion}
-          handleAnswer={handleAnswer}
-        />}
+      <div className="question-container">
+        <div
+          style={{ width: `${currentProgress}%` }}
+          className="current-progress"
+        ></div>
+        {currentQuestion && (
+          <Question
+            total={questions.length}
+            index={currentQuestionIndex}
+            category={currentQuestion?.category}
+            type={currentQuestion?.type}
+            difficulty={currentQuestion?.difficulty}
+            question={currentQuestion?.question}
+            correct_answer={currentQuestion?.correct_answer}
+            incorrect_answers={currentQuestion?.incorrect_answers}
+            handleNextQuestion={handleNextQuestion}
+            status={status}
+            handleAnswer={handleAnswer}
+          />
+        )}
+        {status && (
+          <div className="status-message">
+            <h2>{status}</h2>
+            <button onClick={handleNextQuestion} className="status-btn">
+              Next Question
+            </button>
+          </div>
+        )}
         <ProgressBar
           score={score}
           incorrectAnswers={incorrectAnswers}
@@ -89,7 +112,7 @@ const Quiz = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Quiz
+export default Quiz;
