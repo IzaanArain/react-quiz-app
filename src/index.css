@@ -10,7 +10,7 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 border-bottom: 5px solid #717171;
-/* background-attachment: fixed; */
+background-attachment: fixed;
 }
 
 .quiz-container{
@@ -133,3 +133,19 @@ border-bottom: 5px solid #717171;
   background-color: #D2D2D2;
 }
 
+@media screen and (max-width:1200px)  {
+  .quiz-container  {
+    width: 100%;
+    margin: 0;
+  }
+  .question-container {
+    margin-top: 10rem;
+    width: 100%;
+  }
+  .next-btn {
+    width: 80%;
+  }
+  .choice-list {
+    flex-direction: column;
+  }
+}

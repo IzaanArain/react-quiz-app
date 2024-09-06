@@ -42,7 +42,7 @@ const Quiz = () => {
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentQuestionIndex((prev)=> prev + 1);
       setStatus(null);
     } else if (currentQuestionIndex === totalQuestions - 1) {
       setStatus("Quiz Completed!");
