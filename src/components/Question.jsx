@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Rating from './Rating';
-import { shuffleArray } from '../utils/helpers';
+import { shuffleArray, removeEntertainment } from '../utils/helpers';
 const Question = (props) => {
   const {
     total,
@@ -26,7 +26,7 @@ const Question = (props) => {
   return (
     <div className='question-box'>
       <h1>{`Question ${index + 1} of ${total}`}</h1>
-      <p className='category-text'>{decodeURIComponent(category)}</p>
+      <p className='category-text'>Entertainment: {removeEntertainment(decodeURIComponent(category))}</p>
       <Rating difficulty={difficulty} />
       <p className='question-text'>{decodeURIComponent(question)}</p>
       <div className='choice-list'>

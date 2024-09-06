@@ -93,7 +93,7 @@ const Quiz = () => {
       <div className="question-container">
         <div
           style={{ width: `${currentProgress}%` }}
-          className="current-progress"
+          className="progress current-progress"
         ></div>
         <Question
           total={questions.length}

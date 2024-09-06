@@ -65,11 +65,13 @@ border-bottom: 5px solid #717171;
   font-size: 1rem;
   font-weight: 600;
   width: 50%;
+  transition: transform 0.3s ease, background-color 0.4s ease, color 0.4s ease; 
 }
 
 .choice-btn:hover {
   color: white;
   background-color: black;
+  transform: scale(1.05);
 }
 
 .status-message{
@@ -85,17 +87,16 @@ border-bottom: 5px solid #717171;
   font-size: 1rem;
   font-weight: 600;
   width: 20%;
+  transition: transform 0.3s ease, background-color 0.4s ease, color 0.4s ease;
 }
 
 .next-btn:hover {
   color: white;
   background-color: black;
+  transform: scale(1.2);
 }
 
-.current-progress {
-  padding: 10px;
-  background-color: #717171;
-}
+
 .score-card{
   display: flex;
   justify-content: space-between;
@@ -116,8 +117,12 @@ border-bottom: 5px solid #717171;
 .progress {
   padding: 10px;
   border-radius: 0;
+  transition: width 0.5s ease-in-out;
 }
 
+.current-progress {
+  background-color: #717171;
+}
 .currently-answered-progress {
   background-color: black;
 }

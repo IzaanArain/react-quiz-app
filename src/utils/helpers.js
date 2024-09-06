@@ -5,4 +5,11 @@ export function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]]; 
   }
   return array;
-}
+};
+
+export function removeEntertainment(str) {
+  if(str.startsWith("Entertainment: ")){
+    return str.replace("Entertainment: ","")
+  }
+  return str
+};
