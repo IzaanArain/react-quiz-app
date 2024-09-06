@@ -11,7 +11,7 @@ const Question = (props) => {
     question,
     correct_answer,
     incorrect_answers = [],
-    status ,
+    status,
     handleAnswer,
   } = props;
   const [choices, setChoices] = useState([]);
@@ -33,15 +33,15 @@ const Question = (props) => {
         {
           choices.map((choice, i) => {
             return (
-              <div className='choice-box'>
-                <button key={i}
-                onClick={() => {
-                  handleAnswer(decodeURIComponent(choice))
-                }}
-                className='choice-btn'
+              <div className='choice-box' key={i}>
+                <button
+                  onClick={() => {
+                    handleAnswer(decodeURIComponent(choice))
+                  }}
+                  className='choice-btn'
                 >
-                {decodeURIComponent(choice)}
-              </button>
+                  {decodeURIComponent(choice)}
+                </button>
               </div>
             )
           })

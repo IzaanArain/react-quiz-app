@@ -1,5 +1,6 @@
 import React from 'react'
 import { LiaStarSolid } from "react-icons/lia";
+import { FaRegStar } from "react-icons/fa6";
 
 const Rating = ({ difficulty }) => {
 
@@ -11,6 +12,8 @@ const Rating = ({ difficulty }) => {
           <LiaStarSolid />
           <LiaStarSolid />
           <LiaStarSolid />
+          <FaRegStar />
+          <FaRegStar />
         </>
       );
       break;
@@ -18,6 +21,10 @@ const Rating = ({ difficulty }) => {
       starComponent = (
         <>
           <LiaStarSolid />
+          <FaRegStar />
+          <FaRegStar />
+          <FaRegStar />
+          <FaRegStar />
         </>
       );
       break;
@@ -26,6 +33,9 @@ const Rating = ({ difficulty }) => {
         <>
           <LiaStarSolid />
           <LiaStarSolid />
+          <FaRegStar />
+          <FaRegStar />
+          <FaRegStar />
         </>
       );
       break;

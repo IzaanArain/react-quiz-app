@@ -8,10 +8,13 @@ const Quiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState();
   const [score, setScore] = useState(0);
+  const [status, setStatus] = useState(null);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const [currentlyAnswered, setCurrentlyAnswered] = useState(0);
   const [currentProgress, setCurrentProgress] = useState(0);
-  const [status, setStatus] = useState(null);
+  const [maximunProgress, setMaximunProgress] = useState(0);
+  const [minimunProgress, setMinimunProgress] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -24,6 +27,7 @@ const Quiz = () => {
         // });
         // const data = await res.json();
         setQuestion(data);
+        setCurrentQuestion(data[0]);
       } catch (err) {
         console.error("error", err.message);
       }
@@ -31,13 +35,17 @@ const Quiz = () => {
   }, []);
 
   useEffect(() => {
+    setTotalQuestions(questions.length)
     setCurrentQuestion(questions[currentQuestionIndex]);
+
   }, [questions, currentQuestionIndex]);
 
   const handleNextQuestion = () => {
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setStatus(null);
+    } else if (currentQuestionIndex === totalQuestions - 1) {
+      setStatus("Quiz Completed!");
     }
   };
 
@@ -55,25 +63,30 @@ const Quiz = () => {
   };
 
   const calculateProgress = () => {
-    if (currentQuestionIndex <= questions.length) {
+    let completedQuestions = currentQuestionIndex + 1;
+    if (totalQuestions > 0 && currentQuestionIndex <= totalQuestions) {
       const currentProgressQuestion = Math.round(
-        ((currentQuestionIndex + 1) / questions.length) * 100
+        (completedQuestions / totalQuestions) * 100
       );
       setCurrentProgress(currentProgressQuestion);
       const currentlyAnsweredQuestions = Math.round(
-        (score / (currentQuestionIndex + 1)) * 100
+        (score / completedQuestions) * 100
       );
       setCurrentlyAnswered(currentlyAnsweredQuestions);
+      const minimumProgressQuestions = Math.round(
+        (score / totalQuestions) * 100
+      );
+      setMinimunProgress(minimumProgressQuestions)
+      const maximunProgressQuestions = Math.round(
+        ((totalQuestions - completedQuestions) / totalQuestions) * 100
+      );
+      setMaximunProgress(maximunProgressQuestions);
     }
   };
 
   useEffect(() => {
     calculateProgress();
   }, [score, incorrectAnswers]);
-
-  // console.log("score", score);
-  // console.log("incorrectAnswers", incorrectAnswers);
-  // console.log("currentlyAnsweredQuestions", currentlyAnswered);
 
   return (
     <div className="quiz-container">
@@ -82,21 +95,19 @@ const Quiz = () => {
           style={{ width: `${currentProgress}%` }}
           className="current-progress"
         ></div>
-        {currentQuestion && (
-          <Question
-            total={questions.length}
-            index={currentQuestionIndex}
-            category={currentQuestion?.category}
-            type={currentQuestion?.type}
-            difficulty={currentQuestion?.difficulty}
-            question={currentQuestion?.question}
-            correct_answer={currentQuestion?.correct_answer}
-            incorrect_answers={currentQuestion?.incorrect_answers}
-            handleNextQuestion={handleNextQuestion}
-            status={status}
-            handleAnswer={handleAnswer}
-          />
-        )}
+        <Question
+          total={questions.length}
+          index={currentQuestionIndex}
+          category={currentQuestion?.category}
+          type={currentQuestion?.type}
+          difficulty={currentQuestion?.difficulty}
+          question={currentQuestion?.question}
+          correct_answer={currentQuestion?.correct_answer}
+          incorrect_answers={currentQuestion?.incorrect_answers}
+          handleNextQuestion={handleNextQuestion}
+          status={status}
+          handleAnswer={handleAnswer}
+        />
         {status && (
           <div className="status-message">
             <h2>{status}</h2>
@@ -109,6 +120,8 @@ const Quiz = () => {
           score={score}
           incorrectAnswers={incorrectAnswers}
           currentlyAnswered={currentlyAnswered}
+          maximunProgress={maximunProgress}
+          minimunProgress={minimunProgress}
         />
       </div>
     </div>

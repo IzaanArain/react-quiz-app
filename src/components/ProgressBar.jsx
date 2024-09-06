@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react'
 
-const ProgressBar = ({ score, incorrectAnswers, currentlyAnswered }) => {
-  // console.log("score", score);
-  // console.log("incorrectAnswers", incorrectAnswers);
-  // console.log("currentlyAnswered", currentlyAnswered);
+const ProgressBar = (props) => {
+  const {
+    score,
+    incorrectAnswers,
+    currentlyAnswered,
+    maximunProgress,
+    minimunProgress
+  } = props
 
+  console.log({
+    currentlyAnswered,
+    maximunProgress,
+    minimunProgress
+  })
   return (
     <div className='progress-bar-container'>
       <div className='score-card'>
         <p>Score: {currentlyAnswered}%</p>
-        <p>Max Score: 75%</p>
+        <p>Max Score: {maximunProgress}%</p>
       </div>
       <div className='bar-container'>
         <div
@@ -19,12 +28,12 @@ const ProgressBar = ({ score, incorrectAnswers, currentlyAnswered }) => {
         </div>
         <div
           className="progress minimum-progress"
-          style={{ width: `50%` }}
+          style={{ width: `${minimunProgress}%` }}
         >
         </div>
         <div
           className="progress maximum-progress"
-          style={{ width: `75%` }}
+          style={{ width: `${maximunProgress}%` }}
         >
         </div>
       </div>
