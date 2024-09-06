@@ -69,14 +69,17 @@ const Quiz = () => {
         (completedQuestions / totalQuestions) * 100
       );
       setCurrentProgress(currentProgressQuestion);
+      
       const currentlyAnsweredQuestions = Math.round(
         (score / completedQuestions) * 100
       );
       setCurrentlyAnswered(currentlyAnsweredQuestions);
+
       const minimumProgressQuestions = Math.round(
         (score / totalQuestions) * 100
       );
-      setMinimunProgress(minimumProgressQuestions)
+      setMinimunProgress(minimumProgressQuestions);
+
       const maximunProgressQuestions = Math.round(
         ((totalQuestions - completedQuestions) / totalQuestions) * 100
       );
